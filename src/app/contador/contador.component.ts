@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-// prueba firma confirmada
 @Component({
   selector: 'app-contador',
   template: `
