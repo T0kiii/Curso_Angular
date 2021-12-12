@@ -1,1 +1,23 @@
-<h1>Prueba de componente Héroe</h1>
+<h1>{{nombre}}</h1>
+
+<dl>
+  <dt> Nombre: </dt>
+  <dd>{{nombre}}</dd>
+
+  <dt> Edad: </dt>
+  <dd>{{edad}}</dd>
+
+  <dt> Función: </dt>
+  <dd>{{obtenerNombre()}}</dd>
+
+  <dt> En mayúsculas </dt>
+  <dd>{{nombreMayus}}</dd>
+
+</dl>
+
+<button (click)="cambiarNombre('Pedro')">
+  Cambiar héroe
+</button>
+<button (click)="cambiarEdad(0)">
+  Cambiar edad
+</button>
