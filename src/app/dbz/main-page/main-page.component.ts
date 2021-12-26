@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  templateUrl: './main-page.component.html'
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent {
 
-  constructor() { }
+  agregar(){
+    //event.preventDefault(); // prevee el comportamiento por defecto del formulario. Esto no hace falta en Angular (?)
+    //console.log(event);
+    console.log('no sales weee');
 
-  ngOnInit(): void {
   }
-
 }
