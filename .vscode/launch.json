@@ -20,7 +20,7 @@
       "name": "Launch Microsoft Edge and open the Edge DevTools",
       "request": "launch",
       "type": "vscode-edge-devtools.debug",
-      "url": "" // Provide your project's url to finish configuring
+      "url": "http://localhost:4200/" // Provide your project's url to finish configuring
     }
   ]
 }
