@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
     <button (click)= 'acumular(-base)'> -{{base}} </button>
   `
 })
-export class ContadorApp{
+export class ContadorComponent{
   title: string = 'Curso Angular';
   desc: string = 'Contador App';
 
