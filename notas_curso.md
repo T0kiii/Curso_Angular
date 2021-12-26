@@ -3,6 +3,8 @@
 
 Buena práctica modularizar con los modules. La escala sería app -> module -> component -> html, css, ts, etc
 
+Para utilizar los mismos npm modules en otro equipo, primero ejecutar `npm install` e instalará todos los módulos que aparecen en el `package.json`.
+
 ## GitHub
 
 Para hacer instantáneas del proyecto, crear tags.
