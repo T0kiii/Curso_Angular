@@ -10,11 +10,10 @@ import { FormsModule } from '@angular/forms';
     MainPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,FormsModule
   ],
   exports:[
-    MainPageComponent,
-    FormsModule
+    MainPageComponent
   ]
 })
 export class DbzModule { }
