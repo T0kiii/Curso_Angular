@@ -38,8 +38,17 @@ En el componente destino, `personajes` está declarado así:
 export class PersonajesComponent {
   // dentro de @Input() se puede poner nombre opcional para referirse a la variable desde el exterior
   @Input('data') personajes: any[] = []
-
-}```
+}
+```
+Para llevar varias variables de un componente a otro:
+```html:
+  <div class="col">
+    <app-personajes 
+    [personajes]="personajes"
+    [nuevo]="nuevo"
+    ></app-personajes>
+  </div>
+```
 
 ### Form realizado con Angular
 

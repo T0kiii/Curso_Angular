@@ -24,17 +24,4 @@ export class MainPageComponent {
     poder: 0
   }
 
-  agregarHeroe(){
-    //event.preventDefault(); // prevee el comportamiento por defecto del formulario. Esto no hace falta en Angular (?)
-    //console.log(event);
-
-    console.log(this.nuevo);
-
-    this.personajes.push(this.nuevo)
-
-    this.nuevo = {
-      nombre: '',
-      poder: 0
-    }
-  }
 }
