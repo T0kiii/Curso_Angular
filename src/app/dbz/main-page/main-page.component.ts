@@ -12,19 +12,33 @@ interface Personaje {
 })
 export class MainPageComponent {
 
+  personajes: Personaje[] = [
+    {
+      nombre: 'Goku',
+      poder: 14000
+    },
+    {
+      nombre: 'Vegeta',
+      poder: 8500
+    }
+  ];
+
   nuevo: Personaje = {
-    nombre: 'Trunks',
-    poder: 14000
+    nombre: '',
+    poder: 0
   }
 
-  agregar(){
+  agregarHeroe(){
     //event.preventDefault(); // prevee el comportamiento por defecto del formulario. Esto no hace falta en Angular (?)
     //console.log(event);
+
     console.log(this.nuevo);
 
-  }
+    this.personajes.push(this.nuevo)
 
-  cambiarNombre(event: any){
-    console.log(event.target.value);
+    this.nuevo = {
+      nombre: '',
+      poder: 0
+    }
   }
 }
