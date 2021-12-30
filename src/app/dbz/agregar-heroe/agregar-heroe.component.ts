@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Personaje } from '../interfaces/dbz.interfaces';
 
 @Component({
@@ -7,11 +7,12 @@ import { Personaje } from '../interfaces/dbz.interfaces';
 })
 export class AgregarHeroeComponent  {
 
-  @Input() personajes: Personaje[] = [];
   @Input() nuevo: Personaje = {
     nombre: '',
     poder: 0
   }
+
+  @Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
 
   agregarHeroe(){
     //event.preventDefault(); // prevee el comportamiento por defecto del formulario. Esto no hace falta en Angular (?)
@@ -19,7 +20,7 @@ export class AgregarHeroeComponent  {
 
     console.log(this.nuevo);
 
-    this.personajes.push(this.nuevo)
+    this.onNuevoPersonaje.emit(this.nuevo);
 
     this.nuevo = {
       nombre: '',
