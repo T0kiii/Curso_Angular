@@ -7,7 +7,7 @@ import { Personaje } from '../interfaces/dbz.interfaces';
 })
 export class AgregarHeroeComponent  {
 
-  @Input() nuevo: Personaje = {
+  @Input('data') nuevo: Personaje = {
     nombre: '',
     poder: 0
   }
@@ -22,6 +22,7 @@ export class AgregarHeroeComponent  {
 
     this.onNuevoPersonaje.emit(this.nuevo);
 
+    // setteamos a vacío los campos después de sacar la info
     this.nuevo = {
       nombre: '',
       poder: 0

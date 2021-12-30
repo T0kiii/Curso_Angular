@@ -1,27 +1,138 @@
-# CursoAngular
+# Curso Angular 📐
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.1.
 
-## Development server
+- [Curso Angular 📐](#curso-angular-)
+  - [Componentes 🎁](#componentes-)
+  - [Mover datos entre html y componentes 📻](#mover-datos-entre-html-y-componentes-)
+    - [Form realizado con Angular](#form-realizado-con-angular)
+  - [Debugging 🐞](#debugging-)
+  - [GitHub 🐱](#github-)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+Buena práctica modularizar con los modules. La escala sería app -> module -> component -> html, css, ts, etc
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Para utilizar los mismos npm modules en otro equipo, primero ejecutar `npm install` e instalará todos los módulos que aparecen en el `package.json`.
 
-## Build
+## Componentes 🎁
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Para crear un componente (saltando crear test):
 
-## Running unit tests
+```npm:
+ng g c dbz/personajes --skipTests
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Mover datos entre html y componentes 📻
 
-## Running end-to-end tests
+`[]` en el html para traer dato del componente
+`()` en el html para escuchar evento
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Ejemplo:
 
-## Further help
+```html:
+      <input
+      type="text" placeholder="Nombre"
+      [value]="nuevo.nombre"
+      (click)="cambiarNombre($event)"
+      >
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Para llevar variables de un componente a otro:
+
+`[personajes]` es la variable destino y `"personajes"` la variable local
+
+```html:
+  <div class="col">
+    <app-personajes [personajes]="personajes"></app-personajes>
+  </div>
+```
+
+En el componente destino, `personajes` está declarado así:
+
+```typescript:
+export class PersonajesComponent {
+  // dentro de @Input() se puede poner nombre opcional para referirse a la 
+  // variable desde el exterior
+  @Input('data') personajes: any[] = []
+}
+```
+
+- Para llevar varias variables de un componente a otro:
+
+```html:
+  <div class="col">
+    <app-personajes 
+    [personajes]="personajes"
+    [data]="nuevo"
+    ></app-personajes>
+  </div>
+```
+
+- Para emitir info de un componente a otro:
+
+```typescript:
+  @Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
+```
+
+En el componente donde se recibe la info está declarado así:
+
+```html:
+<div class="col">
+    <app-agregar-heroe
+    [data]="nuevo"
+    (onNuevoPersonaje)="agregarNuevoPersonaje( $event )"></app-agregar-heroe>
+  </div>
+```
+
+Y definición de `agregarNuevoPersonaje()`:
+
+```typescript:
+  agregarNuevoPersonaje ( argumento: Personaje) {
+    this.personajes.push(argumento);
+  }
+```
+
+### Form realizado con Angular
+
+```typescript:
+<form (ngSubmit)="agregarHeroe()"> <!-- submit para fuera de Angular -->
+  <input
+  type="text" placeholder="Nombre"
+  name="nombre"
+  [(ngModel)] = "nuevo.nombre"
+  />
+
+  <input
+  type="number" placeholder="Poder"
+  name="poder"
+  [(ngModel)] = "nuevo.poder"
+  >
+
+  <button type="submit">Agregar</button>
+</form>
+```
+
+## Debugging 🐞
+
+Si insertas `debbuger;` en una línea de ts/js, se comportará como un breakpoint manual. Se podrá visualizar los valores con los que entra a la función o whatever.
+
+Si presionas `F5`, aparecerá un navegador a elegir. Al seleccionarlo, vscode te lleva hasta el file `launch.json` donde se puede configurar el puerto y dir donde tiene que debuggear a la app. Una vez configurado, la próxima vez que presiones `F5` se lanzará la versión adaptada del navegador para debug.
+
+## GitHub 🐱
+
+Para hacer instantáneas del proyecto, crear tags.
+Para crear un tag
+
+```cmd:
+git tag -a v0.1.0 -m "Sección intro de Angular completada"
+```
+
+Para subir el tag a GitHub
+
+```cmd:
+git push --tags
+```
+
+En GitHub se pueden gestionar los tags pusheados y editarlos para convertirlos en releases
+
