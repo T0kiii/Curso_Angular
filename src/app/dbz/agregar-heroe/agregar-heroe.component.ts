@@ -14,6 +14,9 @@ export class AgregarHeroeComponent  {
 
   @Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
 
+  /**
+   * Emite un héroe en la lista heroes con los datos recibidos
+   */
   agregarHeroe(){
     //event.preventDefault(); // prevee el comportamiento por defecto del formulario. Esto no hace falta en Angular (?)
     //console.log(event);

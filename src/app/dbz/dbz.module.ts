@@ -4,6 +4,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { FormsModule } from '@angular/forms';
 import { PersonajesComponent } from './personajes/personajes.component';
 import { AgregarHeroeComponent } from './agregar-heroe/agregar-heroe.component';
+import { DbzService } from './services/dbz.service';
 
 
 
@@ -14,10 +15,14 @@ import { AgregarHeroeComponent } from './agregar-heroe/agregar-heroe.component';
     AgregarHeroeComponent
   ],
   imports: [
-    CommonModule,FormsModule
+    CommonModule,
+    FormsModule
   ],
   exports:[
     MainPageComponent
+  ],
+  providers:[
+    DbzService
   ]
 })
 export class DbzModule { }

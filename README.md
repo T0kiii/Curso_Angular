@@ -6,6 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - [Componentes 🎁](#componentes-)
   - [Mover datos entre html y componentes 📻](#mover-datos-entre-html-y-componentes-)
     - [Form realizado con Angular](#form-realizado-con-angular)
+  - [Servicios](#servicios)
   - [Debugging 🐞](#debugging-)
   - [GitHub 🐱](#github-)
 
@@ -32,9 +33,9 @@ Ejemplo:
 
 ```html:
       <input
-      type="text" placeholder="Nombre"
-      [value]="nuevo.nombre"
-      (click)="cambiarNombre($event)"
+        type="text" placeholder="Nombre"
+        [value]="nuevo.nombre"
+        (click)="cambiarNombre($event)"
       >
 ```
 
@@ -63,8 +64,8 @@ export class PersonajesComponent {
 ```html:
   <div class="col">
     <app-personajes 
-    [personajes]="personajes"
-    [data]="nuevo"
+      [personajes]="personajes"
+      [data]="nuevo"
     ></app-personajes>
   </div>
 ```
@@ -80,8 +81,10 @@ En el componente donde se recibe la info está declarado así:
 ```html:
 <div class="col">
     <app-agregar-heroe
-    [data]="nuevo"
-    (onNuevoPersonaje)="agregarNuevoPersonaje( $event )"></app-agregar-heroe>
+      [data]="nuevo"
+      (onNuevoPersonaje)="agregarNuevoPersonaje( $event )"
+    >
+    </app-agregar-heroe>
   </div>
 ```
 
@@ -98,20 +101,45 @@ Y definición de `agregarNuevoPersonaje()`:
 ```typescript:
 <form (ngSubmit)="agregarHeroe()"> <!-- submit para fuera de Angular -->
   <input
-  type="text" placeholder="Nombre"
-  name="nombre"
-  [(ngModel)] = "nuevo.nombre"
+    type="text" placeholder="Nombre"
+    name="nombre"
+    [(ngModel)] = "nuevo.nombre"
   />
 
   <input
-  type="number" placeholder="Poder"
-  name="poder"
-  [(ngModel)] = "nuevo.poder"
+    type="number" placeholder="Poder"
+    name="poder"
+    [(ngModel)] = "nuevo.poder"
   >
 
   <button type="submit">Agregar</button>
 </form>
 ```
+
+## Servicios
+
+Los servicios se encargan de distribuir los datos entre servicios.
+Son como clases estáticas con las que interactuan los componentes.
+
+Ejemplo:
+
+```typescript:
+import { Injectable } from "@angular/core";
+
+
+@Injectable() // decorador para servicios
+export class DbzService {}
+```
+
+Inyección de dependencias en una clase:
+
+```typescript:
+export class MainPageComponent {
+/* Inyección de dependencias. Estamos inyectando el servicio en el componente. */
+  constructor(private dbzService: DbzService){}
+```
+
+Si se declara el servicio duplicado entre componentes, solo se instacia una vez, porque Angular es muy listo
 
 ## Debugging 🐞
 
@@ -135,4 +163,3 @@ git push --tags
 ```
 
 En GitHub se pueden gestionar los tags pusheados y editarlos para convertirlos en releases
-
