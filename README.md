@@ -28,13 +28,21 @@ ng g c dbz/personajes --skipTests
 
 El operador `...` en javascript es un Rest Parameter. Metiendo esto en un array, hacemos que podamos meter
 todos los valores que queramos (entiendo que lo convierte en un array dinámico).
+También se puede usar para desempaquetar el array en valores separados.
+
 Ejemplo:
 
 ```typescript:
-get personajes(): Personaje[]{
-    return [...this._personajes]; // Los '...' son para decirle que separe los elementos del array y que cree uno nuevo (?)
-  }
+function myFunc(...[x, y, z]) {
+  return x * y* z;
+}
+
+myFunc(1)          // NaN
+myFunc(1, 2, 3)    // 6
+myFunc(1, 2, 3, 4) // 6 (fourth parameter is not destructured)
 ```
+
+[Link interesante sobre `...`](https://dev.to/sagar/three-dots---in-javascript-26ci)
 
 ## Mover datos entre html y componentes 📻
 
