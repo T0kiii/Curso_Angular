@@ -7,6 +7,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - [Mover datos entre html y componentes 📻](#mover-datos-entre-html-y-componentes-)
     - [Form realizado con Angular](#form-realizado-con-angular)
   - [Servicios](#servicios)
+    - [Inyección de dependencias en una clase:](#inyección-de-dependencias-en-una-clase)
+    - [Exportar datos desde un servicio](#exportar-datos-desde-un-servicio)
   - [Debugging 🐞](#debugging-)
   - [GitHub 🐱](#github-)
 
@@ -22,6 +24,16 @@ Para crear un componente (saltando crear test):
 
 ```npm:
 ng g c dbz/personajes --skipTests
+```
+
+El operador `...` en javascript es un Rest Parameter. Metiendo esto en un array, hacemos que podamos meter
+todos los valores que queramos (entiendo que lo convierte en un array dinámico).
+Ejemplo:
+
+```typescript:
+get personajes(): Personaje[]{
+    return [...this._personajes]; // Los '...' son para decirle que separe los elementos del array y que cree uno nuevo (?)
+  }
 ```
 
 ## Mover datos entre html y componentes 📻
@@ -131,7 +143,7 @@ import { Injectable } from "@angular/core";
 export class DbzService {}
 ```
 
-Inyección de dependencias en una clase:
+### Inyección de dependencias en una clase:
 
 ```typescript:
 export class MainPageComponent {
@@ -140,6 +152,31 @@ export class MainPageComponent {
 ```
 
 Si se declara el servicio duplicado entre componentes, solo se instacia una vez, porque Angular es muy listo
+
+### Exportar datos desde un servicio
+
+Se emplea `get` para exportar desde el servicio e importar desde el componenete
+Ejemplo:
+
+```typescript:
+// en el Servicio
+get personajes(): Personaje[]{
+    return [...this._personajes]; // Los '...' son para decirle que separe los elementos del array y que cree uno nuevo (?)
+  }
+```
+
+```typescript:
+// en el Componente
+export class PersonajesComponent {
+
+  constructor( private dbzService: DbzService){}
+
+  // @Input() personajes: Personaje[] = []
+  get personajes(): Personaje[]{
+    return this.dbzService.personajes;
+  }
+}
+```
 
 ## Debugging 🐞
 

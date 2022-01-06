@@ -9,16 +9,13 @@ import { DbzService } from '../services/dbz.service';
 })
 export class MainPageComponent {
 
-  personajes: Personaje[] = [
-    {
-      nombre: 'Goku',
-      poder: 14000
-    },
-    {
-      nombre: 'Vegeta',
-      poder: 8500
-    }
-  ];
+  /* Inyección de dependencias. Estamos inyectando el servicio en el componente. Si se declara el servicio duplicado entre componentes,
+     solo se instacia una vez, porque Angular es muy listo*/
+  constructor(private dbzService: DbzService){}
+
+  get personajes(): Personaje[]{
+    return this.dbzService.personajes;
+  }
 
   nuevo: Personaje = {
     nombre: '',
@@ -28,9 +25,4 @@ export class MainPageComponent {
   agregarNuevoPersonaje ( argumento: Personaje) {
     this.personajes.push(argumento);
   }
-
-  /* Inyección de dependencias. Estamos inyectando el servicio en el componente. Si se declara el servicio duplicado entre componentes,
-     solo se instacia una vez, porque Angular es muy listo*/
-  constructor(private dbzService: DbzService){}
-
 }
