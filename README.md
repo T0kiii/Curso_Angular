@@ -11,6 +11,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     - [Exportar datos desde un servicio](#exportar-datos-desde-un-servicio)
   - [Debugging 🐞](#debugging-)
   - [GitHub 🐱](#github-)
+    - [Commits](#commits)
+    - [Tags](#tags)
 
 ---
 
@@ -194,6 +196,62 @@ Si insertas `debbuger;` en una línea de ts/js, se comportará como un breakpoin
 Si presionas `F5`, aparecerá un navegador a elegir. Al seleccionarlo, vscode te lleva hasta el file `launch.json` donde se puede configurar el puerto y dir donde tiene que debuggear a la app. Una vez configurado, la próxima vez que presiones `F5` se lanzará la versión adaptada del navegador para debug.
 
 ## GitHub 🐱
+
+### Commits
+
+Por convención, los commits deberían estructurarse de la siguiente forma:
+
+```text:
+<type>[optional scope]:
+<description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+Los tipos de comit son los siguientes:
+
+- **feat**
+  Nueva funcionalidad añadida.
+- **fix**
+  Bug arreglado.
+- **chore**
+  Cambios no relacionados con un _fix_ o una _feature_ y que no modifican el `src` o `test` de la aplicación.
+  Ej: Actualizar dependencias.
+- **refactor**
+  Refactorizar código que ni arregla un bug ni añade ninguna funcionalidad.
+- **docs**
+  Actualizar la documentación, como el README u otros ficheros markdown.
+- **style**
+  Cambios que no afectan al sentido del código, como quitar saltos de línea o espacios (maquetar)
+- **test**
+  Añadir o corregir test existentes
+- **perf**
+  Mejoras del rendimiento
+- **ci**
+  Relacionado con _integración continua_. Ejemplo supongo que Jenkins.
+- **build**
+  Cambios que afectan al sistema o dependencias externas.
+- **revert**
+  Cuando se revierte los cambios de un commit.
+
+Ejemplo de commit completo:
+
+```git:
+fix: fix foo to enable bar
+
+This fixes the broken behavior of the component by doing xyz. 
+
+BREAKING CHANGE
+Before this fix foo wasn't enabled at all, behavior changes from <old> to <new>
+
+Closes D2IQ-12345
+```
+
+Link relacionado del [tema](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/)
+
+### Tags
 
 Para hacer instantáneas del proyecto, crear tags.
 Para crear un tag
