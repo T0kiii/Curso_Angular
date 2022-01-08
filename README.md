@@ -13,6 +13,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - [GitHub 🐱](#github-)
     - [Commits](#commits)
     - [Tags](#tags)
+  - [Producción](#producción)
+    - [Antes de poner en producción](#antes-de-poner-en-producción)
+    - [Crear app de producción](#crear-app-de-producción)
+  - [v1](#v1)
 
 ---
 
@@ -267,3 +271,49 @@ git push --tags
 ```
 
 En GitHub se pueden gestionar los tags pusheados y editarlos para convertirlos en releases
+
+## Producción
+
+Se tiene que montar la build de producción una vez creada la app estable. No solo por la mejora de performance, sino también por el espacio ahorrado.
+A la hora de montarse ignora los comentarios y no se agrega al producto final
+
+### Antes de poner en producción
+
+1. Asegurarnos que no tenemos imports sin usar en nuestro código.
+2. Correr la app para comprobar que funciona (lógico). `CMD` desde ruta del proyecto y npm serve
+
+### Crear app de producción
+
+```npm:
+ng build --prod
+```
+
+**Nota: AngularCLI pone que `--prod` está deprecated. Por defecto está configurado a `"production"`.*
+
+Este comando creará una carpeta llamada `dist` en la carpeta del proyecto. La carpeta que se copia al servidor de hosting es la que tiene dentro con el nombre del proyecto.
+El nombre de los archivos van acompañados de un hash para que el navegador diferencie los elementos que tiene que recargar cuando encuentre que un nombre de archvo ha cambiado.
+
+No se puede abrir el `index.html` para ver la app, porque se carga mediante protocolo `file` y no `http`, como se supone que debe ser cargada. Para poder verla hay que hostearla en un servidor.
+
+---
+
+## v1
+
+| Initial Chunk Files           | Names         | Raw Size  | Estimated Transfer Size |
+| ----------------------------- | ------------- | --------- | ----------------------- |
+| main.7e7540cf74e0b943.js      | main          | 151.70 kB | 41.60 kB                |
+| polyfills.4f99e6cd08d726ef.js | polyfills     | 36.21 kB  | 11.48 kB                |
+| runtime.6f45e6854cdfbfdc.js   | runtime       | 1.05 kB   | 600 bytes               |
+| styles.dc3e7ac02ccd86e8.css   | styles        | 464 bytes | 218 bytes               |
+|                               | Initial Total | 189.41 kB | 53.87 kB                |
+
+Descripción de los bloques:
+
+- _main_
+  Donde está nuestra aplicación y donde más optimizaciones podemos hacer haciendo varios módulos e implementando el lazyload.
+- _polyfills_
+  Funciones que se aseguran que la app funcione en varios navegadores.
+- _runtime_
+  Lo necesitamos para correr la aplicación.
+- _styles_
+  Donde están los estilos de la app.
