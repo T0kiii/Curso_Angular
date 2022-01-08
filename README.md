@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - [Mover datos entre html y componentes 📻](#mover-datos-entre-html-y-componentes-)
     - [Form realizado con Angular](#form-realizado-con-angular)
   - [Servicios](#servicios)
-    - [Inyección de dependencias en una clase:](#inyección-de-dependencias-en-una-clase)
+    - [Inyección de dependencias en una clase](#inyección-de-dependencias-en-una-clase)
     - [Exportar datos desde un servicio](#exportar-datos-desde-un-servicio)
   - [Debugging 🐞](#debugging-)
   - [GitHub 🐱](#github-)
@@ -140,6 +140,7 @@ Y definición de `agregarNuevoPersonaje()`:
 
 Los servicios se encargan de distribuir los datos entre servicios.
 Son como clases estáticas con las que interactuan los componentes.
+Toda la lógica para trabajar con estos datos se encuentra en el servicio.
 
 Ejemplo:
 
@@ -151,7 +152,7 @@ import { Injectable } from "@angular/core";
 export class DbzService {}
 ```
 
-### Inyección de dependencias en una clase:
+### Inyección de dependencias en una clase
 
 ```typescript:
 export class MainPageComponent {

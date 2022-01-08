@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Personaje } from '../interfaces/dbz.interfaces';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'app-agregar-heroe',
@@ -7,26 +8,29 @@ import { Personaje } from '../interfaces/dbz.interfaces';
 })
 export class AgregarHeroeComponent  {
 
-  @Input('data') nuevo: Personaje = {
+  constructor(private dbzService: DbzService){}
+
+  @Input('data') nuevoPersonaje: Personaje = {
     nombre: '',
     poder: 0
   }
 
-  @Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
+  // @Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
 
   /**
    * Emite un héroe en la lista heroes con los datos recibidos
    */
-  agregarHeroe(){
+  agregar(){
     //event.preventDefault(); // prevee el comportamiento por defecto del formulario. Esto no hace falta en Angular (?)
     //console.log(event);
+    //this.onNuevoPersonaje.emit(this.nuevo);
 
-    console.log(this.nuevo);
+    console.log(this.nuevoPersonaje);
 
-    this.onNuevoPersonaje.emit(this.nuevo);
+    this.dbzService.agregarPersonaje(this.nuevoPersonaje)
 
     // setteamos a vacío los campos después de sacar la info
-    this.nuevo = {
+    this.nuevoPersonaje = {
       nombre: '',
       poder: 0
     }
